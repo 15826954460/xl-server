@@ -1,6 +1,5 @@
 
-// 定义测试函数
-function sum(a,b) {
+function sum(a, b) {
   return a + b;
 }
 

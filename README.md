@@ -21,9 +21,11 @@
 - supertest                 配合jest做单元测试
 
 #### 命令说明
-"test": "cross-env NODE_ENV=test jest --runInBand --forceExit --colors",
---runInBand => 顺序执行
---forceExit => 执行完强制退出
---colors  => 输出带颜色的结果，增强可视化效果
+- "test": "cross-env NODE_ENV=test jest --runInBand --forceExit --colors",
+- --runInBand => 顺序执行
+- --forceExit => 执行完强制退出
+- --colors  => 输出带颜色的结果，增强可视化效果
+- --coverage => 针对本次的测试进行全范围覆盖
+- --watch => 监听，当文件修改后会自动进行测试
 
 jest 测试用列 文件必须以 .test.js 结尾  格式为 xxx.test.js
