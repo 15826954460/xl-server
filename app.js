@@ -108,7 +108,7 @@ app.on('error', function(err, ctx) {
 })
 
 app.listen(port, () => {
-  console.log(`Listening on http://localhost:${localConfig.port}`)
+  console.log(`Listening on http://127.0.0.1:${localConfig.port}`)
 });
 
 module.exports = app;

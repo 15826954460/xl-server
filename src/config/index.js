@@ -31,7 +31,7 @@ let mysqlConfig = {
 };
 
 let localConfig = {
-  port: 3030
+  port: 9999
 }
 
 if (isDev) {

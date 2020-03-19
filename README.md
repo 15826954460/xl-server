@@ -29,3 +29,9 @@
 - --watch => 监听，当文件修改后会自动进行测试
 
 jest 测试用列 文件必须以 .test.js 结尾  格式为 xxx.test.js
+
+
+##### 
+cd folder
+npm init -y 生成package.json
+git init 生成 .git 文件

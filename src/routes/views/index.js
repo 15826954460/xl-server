@@ -10,5 +10,15 @@ module.exports = (router) => {
       title: 'koas json',
       viewNum: session.viewNum,
     }
-  })
+  });
+
+  // test
+  router.get('/test', async (ctx, next) => {
+    return {
+      code: 0,
+      data: {
+        title: 'test',
+      }
+    }
+  });
 }
