@@ -15,7 +15,7 @@
 - koa-generic-session       kos生成session  链接：https://www.npmjs.com/package/
 - cross-env                 跨平台环境设置
 - pre-commit                结合eslint强制 commit 之前进行 eslint 代码检测
-- koa-cors                  解决服务端的跨域问题
+- koa2-cors                 解决服务端的跨域
 - nodemon                   nodejs开发调试工具
 - jest                      jest 单元测试
 - supertest                 配合jest做单元测试

@@ -34,7 +34,7 @@ module.exports = (router) => {
     ctx.body = {
       code: 0,
       data: {
-        title: 'test',
+        title: 'test 666',
       }
     }
   });
@@ -48,7 +48,6 @@ module.exports = (router) => {
   */
   router.get('/getUserInfo', async (ctx, next) => {
     const token = ctx.header.authorization;
-    console.log(token);
     try {
       const payload = await verify(token, secret);
       ctx.body = {

@@ -24,7 +24,7 @@ function resolve (dir) {
 }
 const session = require('koa-generic-session')
 const redisStore = require('koa-redis')
-const cors = require('koa-cors')
+const cors = require('koa2-cors')
 const { redisConfig, localConfig } = require(resolve('/src/config'))
 const secret = require(resolve('/src/config/jwt'))
 
@@ -44,6 +44,35 @@ const onerrorConfig = {
 
 onerror(app, onerrorConfig)
 
+/*
+ * @Author: bys
+ * @Date: 2020-03-20 15:15:59
+ * @Description: 注册 cors 中间件 要放在接口请求之前
+ * @params: {origin} string 设置允许来自指定域名请求
+ * @params: {maxAge} number 指定本次预检请求的有效期，单位为秒
+ * @params: {credentials} boolean 是否允许发送Cookie
+ * @params: {allowMethods} array 设置所允许的HTTP请求方法
+ * @params: {allowHeaders} array 设置服务器支持的所有头信息字段
+ * @params: {exposeHeaders} array 设置获取其他自定义字段
+*/
+// 定义允许跨域的 origin
+const allowOrigins = [
+  'http://localhost:9090',
+];
+app.use(cors({
+  origin: function(ctx) {
+    if (allowOrigins.includes(ctx.header.origin)) {
+      return ctx.header.origin;
+    }
+    return false;
+  },
+  maxAge: 5,
+  credentials: false,
+  allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowHeaders: ['Content-Type', 'Authorization', 'Accept', 'Access-Control-Allow-Origin'],
+  exposeHeaders: ['token']
+}));
+
 // middlewares
 app.use(bodyparser())
   .use(json())
@@ -51,13 +80,7 @@ app.use(bodyparser())
   .use(require('koa-static')(resolve('/src/public')))
   .use(router.routes())
   .use(router.allowedMethods())
-  // .use(views(resolve('/src/views'), {
-  //   options: {settings: {views: resolve('/src/views')}},
-  //   map: {'ejs': 'ejs'},
-  //   extension: 'ejs'
-  // }))
   
-
 /*
  * @Author: bys
  * @Date: 2020-03-19 15:24:29
@@ -65,7 +88,7 @@ app.use(bodyparser())
  * @params: {unless} 排除不用验证接口
  * @url: 
 */
-app.use(jwt({ secret }).unless({ path: [/^\/login/, /^\/web-test/] }));
+// app.use(jwt({ secret }).unless({ path: [/^\/login/, /^\/web-test/] }));
 
 /*
  * @Author: bys
@@ -102,9 +125,7 @@ app.use(async (ctx, next) => {
   await next()
   const ms = new Date() - start
   console.log(`${ctx.method} ${ctx.url} - $ms`)
-})
-
-app.use(cors()) // 注册跨域的中间件
+});
 
 // routes
 indexRoutes(router)
