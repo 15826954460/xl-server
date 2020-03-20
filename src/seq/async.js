@@ -6,8 +6,6 @@
  */
 const seq = require('./seq');
 
-// require('./dbs/index');
-
 // 测试链接数据是否成功
 seq.authenticate().then(() => {
   console.log('auth ok');

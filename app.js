@@ -12,6 +12,7 @@ const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 const debug = require('debug')('koa2:server')
 const path = require('path')
+const jwt = require('koa-jwt')
 
 /*
  * @Author: bys
@@ -25,6 +26,7 @@ const session = require('koa-generic-session')
 const redisStore = require('koa-redis')
 const cors = require('koa-cors')
 const { redisConfig, localConfig } = require(resolve('/src/config'))
+const secret = require(resolve('/src/config/jwt'))
 
 // 路由
 const indexRoutes = require(resolve('/src/routes/views/index'))
@@ -38,21 +40,32 @@ console.log(`当前环境 => ${process.env.NODE_ENV}`);
 // error handler
 const onerrorConfig = {
   redirect: '/error'
-}
+};
+
 onerror(app, onerrorConfig)
 
 // middlewares
-app.use(bodyparser()).use(json()).use(logger())
+app.use(bodyparser())
+  .use(json())
+  .use(logger())
+  .use(require('koa-static')(resolve('/src/public')))
+  .use(router.routes())
+  .use(router.allowedMethods())
+  // .use(views(resolve('/src/views'), {
+  //   options: {settings: {views: resolve('/src/views')}},
+  //   map: {'ejs': 'ejs'},
+  //   extension: 'ejs'
+  // }))
+  
 
-// 将public用做静态资源目录来访问
-app.use(require('koa-static')(resolve('/src/public')))
-
-// 通过注册中间件来识别ejs
-// app.use(views(resolve('/src/views'), {
-//   options: {settings: {views: resolve('/src/views')}},
-//   map: {'ejs': 'ejs'},
-//   extension: 'ejs'
-// }))
+/*
+ * @Author: bys
+ * @Date: 2020-03-19 15:24:29
+ * @Description: 注册jwt
+ * @params: {unless} 排除不用验证接口
+ * @url: 
+*/
+app.use(jwt({ secret }).unless({ path: [/^\/login/, /^\/web-test/] }));
 
 /*
  * @Author: bys
@@ -92,12 +105,6 @@ app.use(async (ctx, next) => {
 })
 
 app.use(cors()) // 注册跨域的中间件
-/*
- * @Author: bys
- * @Date: 2020-03-11 17:24:58
- * @Description: 路由中间件, 链式调用
-*/
-app.use(router.routes()).use(router.allowedMethods())
 
 // routes
 indexRoutes(router)
@@ -108,7 +115,7 @@ app.on('error', function(err, ctx) {
 })
 
 app.listen(port, () => {
-  console.log(`Listening on http://127.0.0.1:${localConfig.port}`)
+  console.log(`Listening on http://192.168.1.5:${localConfig.port}`)
 });
 
 module.exports = app;
