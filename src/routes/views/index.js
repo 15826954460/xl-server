@@ -48,8 +48,9 @@ module.exports = (router) => {
   */
   router.get('/getUserInfo', async (ctx, next) => {
     const token = ctx.header.authorization;
+    console.log(token);
     try {
-      const payload = await verify(token.split(' ')[1], secret);
+      const payload = await verify(token, secret);
       ctx.body = {
         code: -1,
         data: payload,
