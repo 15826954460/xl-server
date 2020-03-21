@@ -69,7 +69,7 @@ app.use(cors({
   maxAge: 5,
   credentials: false,
   allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowHeaders: ['Content-Type', 'Authorization', 'Accept', 'Access-Control-Allow-Origin'],
+  allowHeaders: ['Content-Type', 'Authorization', 'Accept',],
   exposeHeaders: ['token']
 }));
 
@@ -88,7 +88,7 @@ app.use(bodyparser())
  * @params: {unless} 排除不用验证接口
  * @url: 
 */
-// app.use(jwt({ secret }).unless({ path: [/^\/login/, /^\/web-test/] }));
+app.use(jwt({ secret }).unless({ path: [/^\/login/, /^\/web-test/] }));
 
 /*
  * @Author: bys

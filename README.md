@@ -20,7 +20,7 @@
 - jest                      jest 单元测试
 - supertest                 配合jest做单元测试
 - passport-local            本地数据库配合 koa-passport 使用
-- koa-jwt                   jwt校验
+- koa2-jwt                   jwt校验
 - jsonwebtoken              json加密的第三方库
 
 #### 命令说明
@@ -34,7 +34,7 @@
 jest 测试用列 文件必须以 .test.js 结尾  格式为 xxx.test.js
 
 #### jwt postman 测试接口
-headers 中添加 key: Authorization  value: Bearer(空格) 加密的tokan
+headers 中添加 key: Authorization  value: 加密的tokan
 
 
 ##### 
