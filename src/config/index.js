@@ -1,8 +1,4 @@
-const {
-  isDev,
-  isProd,
-  isTest
-} = require('../utils/env');
+const { isDev, isProd, isTest } = require('./env');
 
 /*
  * @Author: bys

@@ -29,7 +29,9 @@ const { redisConfig, localConfig } = require(resolve('/src/config'))
 const secret = require(resolve('/src/config/jwt'))
 
 // 路由
-const indexRoutes = require(resolve('/src/routes/views/index'))
+const testRoutes = require(resolve('/src/routes/views/test'))
+const userViewsRoutes = require(resolve('/src/routes/views/user'))
+const userApiRoutes = require(resolve('/src/routes/api/user'))
 
 // 本地服务的端口
 const port = process.env.PORT || localConfig.port
@@ -128,7 +130,10 @@ app.use(async (ctx, next) => {
 });
 
 // routes
-indexRoutes(router)
+testRoutes(router)
+userViewsRoutes(router)
+userApiRoutes(router)
+
 
 app.on('error', function(err, ctx) {
   console.log(err)

@@ -2,7 +2,6 @@
  * @Author: bys
  * @Date: 2020-03-10 21:50:35
  * @Description: 链接redis的方法
- * @params:
  */
 
 const redis = require('reids');

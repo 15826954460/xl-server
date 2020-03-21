@@ -12,7 +12,7 @@ const {
 const {
   isProd,
   isTest
-} = require('../utils/env');
+} = require('../config/env');
 
 // 结构赋值
 const {

@@ -1,4 +1,17 @@
 ### 目录结构
+```
+src
+  config                  //   配置文件
+    constants             //   常量
+    index                 //   数据库、redis、本地端口
+    jwt                   //   JWT密钥
+    env                   //   环境变量
+  controller              //   针对业务的统一处理，返回统一的数据格式
+    user                  //   针对用户的返回信息做统一处理
+  module                  //   数据结构模型
+    responseModule        //   接口返回的数据模型
+  service                 //   针对数据库的操作统一处理
+```
 
 #### 技术栈
 - 数据库： Mysql
@@ -33,6 +46,10 @@
 
 jest 测试用列 文件必须以 .test.js 结尾  格式为 xxx.test.js
 
+
+#### 错误码说明
+- 10001         统一的查询失败 eg：相关数据没有获取到
+
 #### jwt postman 测试接口
 headers 中添加 key: Authorization  value: 加密的tokan
 
@@ -41,3 +58,4 @@ headers 中添加 key: Authorization  value: 加密的tokan
 cd folder
 npm init -y 生成package.json
 git init 生成 .git 文件
+
