@@ -6,6 +6,8 @@
  */
 const seq = require('./seq');
 
+require('../db/index'); // 引入数据模型
+
 // 测试链接数据是否成功
 seq.authenticate().then(() => {
   console.log('auth ok');
