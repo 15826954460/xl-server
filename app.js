@@ -90,7 +90,7 @@ app.use(bodyparser())
  * @params: {unless} 排除不用验证接口
  * @url: 
 */
-app.use(jwt({ secret }).unless({ path: [/^\/login/, /^\/web-test/] }));
+// app.use(jwt({ secret }).unless({ path: [/^\/login/, /^\/web-test/] }));
 
 /*
  * @Author: bys

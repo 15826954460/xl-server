@@ -8,13 +8,13 @@
  * baseModule
  */
 class BaseModule {
-  constructor({errno, data, message}) {
-    this.errno = errno
+  constructor({code, data, msg}) {
+    this.code = code
     if (data) {
       this.data = data
     }
-    if (message) {
-      this.message = message
+    if (msg) {
+      this.msg = msg
     }
   }
 }
@@ -31,7 +31,7 @@ class SuccessModule extends BaseModule {
   }
 }
 
-class ErrorModule extends BaseModule{
+class ErrorModule extends BaseModule {
   constructor({ code, msg }) {
     super({
       code,

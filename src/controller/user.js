@@ -24,7 +24,6 @@ async function isExist(userName) {
   }
 }
 
-
 module.exports = {
   isExist,
 }

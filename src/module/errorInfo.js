@@ -5,9 +5,13 @@
 */
 
 module.exports = {
+  userNameExit: {
+    code: 10001,
+    msg: '用户名已存在'
+  },
   // 用户名不存在
   userNameNotExist: {
-    code: 10001,
+    code: 10003,
     msg: '用户名不存在'
   }
 }

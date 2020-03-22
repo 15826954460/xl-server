@@ -4,7 +4,7 @@
  * @Description: user services
 */
 
-const { User } = require('../db/index');
+const { Users } = require('../db/index');
 const { formatUser } = require('./_format');
 
 /**
@@ -23,12 +23,12 @@ async function getUserInfo(userName, passWord) {
   }
 
   // 查询数据库
-  const result = await User.findOne({
+  const result = await Users.findOne({
     attributes: ['id', 'userName', 'nickName', 'picture', 'city'], // 查询信息
     where: queryOpt,                                               // 查询条件
   })
 
-  if (!result) {
+  if (result === null) {
     return result;
   }
 

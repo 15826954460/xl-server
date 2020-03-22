@@ -23,7 +23,6 @@ module.exports = (router) => {
     ctx.body = {
       code: 0,
       data: {
-
       }
     }
   });

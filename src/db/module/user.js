@@ -34,7 +34,7 @@ const Users = Seq.define('users', {
     type: DECIMAl,
     allowNull: false,
     defaultValue: 3,       // 默认保密
-    comment: '性别(1 男 0 女 3 保密)'
+    comment: '性别(1 男 0 女 2 保密)'
   },
   picture: {
     type: STRING,
