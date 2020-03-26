@@ -20,12 +20,14 @@ async function getUserInfo(userName, passWord) {
   }
   // 判断登陆是否成功的查询条件
   if (passWord) {
-    Object.assign(queryOpt, { passWord });
+    Object.assign(queryOpt, { passWord: doCrypto(passWord) });
   }
 
   // 查询用户信息
   const result = await Users.findOne({
-    attributes: ['id', 'userName', 'nickName', 'picture', 'city'], // 查询信息
+    attributes: [
+      'id', 'userName', 'nickName', 'picture', 'city'
+    ],                                                             // 查询信息
     where: queryOpt,                                               // 查询条件
   })
 

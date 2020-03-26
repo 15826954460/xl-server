@@ -81,8 +81,6 @@ app.use(bodyparser())
   .use(json())
   .use(logger())
   .use(require('koa-static')(resolve('/src/public')))
-  .use(router.routes())
-  .use(router.allowedMethods())
   
 /**
  * @Author: bys
@@ -110,7 +108,7 @@ app.use(session({
   prefix: 'weibo:sess',
   cookie: {
     path: '/',                      // 定义访问路径 / => 表示所有的的都可以访问
-    httpOnly: true,                 // 定义值允许服务端修改
+    httpOnly: true,                 // 定义只允许服务端修改
     maxAge: timeout,                // 过期时间 单位 ms,
     overwrite: true,
     signed: true
@@ -129,10 +127,12 @@ app.use(async (ctx, next) => {
   console.log(`${ctx.method} ${ctx.url} - $ms`)
 });
 
+app.use(router.routes()).use(router.allowedMethods())
+
 // routes
-testRoutes(router)
 userViewsRoutes(router)
 userApiRoutes(router)
+testRoutes(router)  // 路由测试模块
 
 
 app.on('error', function(err, ctx) {

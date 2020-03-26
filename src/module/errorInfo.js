@@ -23,5 +23,10 @@ module.exports = {
   jsonSchemaValidateError: {
     code: 10004,
     msg: '数据格式校验错误'
+  },
+  // 用户名或密码错误
+  loginError: {
+    code: 10005,
+    msg: '用户名或密码错误'
   }
 }

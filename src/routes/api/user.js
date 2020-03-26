@@ -4,7 +4,9 @@
  * @Description: user Api 路由
  */
 
-const { isExist, register  } = require('../../controller/user');
+const {
+  isExist, register, login 
+} = require('../../controller/user');
 const { userValidate } = require('../../validate/user');
 const { genValidate } = require('../../middlewares/validate');
 
@@ -12,8 +14,9 @@ module.exports = (router) => {
   router.prefix('/api/user');
 
   // 登陆
-  router.get('/login', (ctx, next) => {
-    
+  router.post('/login', async (ctx, next) => {
+    const { userName, passWord } = ctx.request.body;
+    ctx.body = await login({ ctx, userName, passWord });
   });
 
   // 注册
@@ -25,6 +28,6 @@ module.exports = (router) => {
   // 判断用户名是否存在
   router.post('/isExist', async (ctx, next) => {
     const { userName } = ctx.request.body;
-    ctx.body = await isExist(userName);
+    ctx.body = await isExist({ userName });
   })
 }

@@ -6,13 +6,15 @@
 
 const { getUserInfo, createUser } = require('../services/user');
 const { SuccessModule, ErrorModule } = require('../module/responseModule');
-const { userNameNotExist, userNameExist, registerFail } = require('../module/errorInfo');
+const { 
+  userNameNotExist, userNameExist, registerFail, loginError
+} = require('../module/errorInfo');
 
 /**
  * @description: 用户名是否存在
  * @param {string} userName 
  */
-async function isExist(userName) {
+async function isExist({ userName }) {
   // 获取用户信息
   const userInfo = await getUserInfo(userName);
   if (userInfo) {
@@ -50,7 +52,30 @@ async function register({ userName, passWord, gender }) {
   }
 }
 
+/**
+ * @description 登陆
+ * @param {string} userName  用户名
+ * @param {string} passWord  密码
+ * @param {object} ctx  koa2 ctx
+ */
+async function login({ ctx, userName, passWord }) {
+  // 获取用户信息
+  const userInfo = await getUserInfo(userName, passWord);
+  if (!userInfo) {
+    // 登陆失败
+    return new ErrorModule(loginError);
+  }
+  // 登陆成功
+  console.log(`登陆成功：${JSON.stringify(userInfo)}`);
+  ctx.session.userInfo = { ...userInfo };
+  
+  return new SuccessModule({
+    data: userInfo
+  });
+}
+
 module.exports = {
   isExist,
   register,
+  login,
 }
