@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const util = require('util'); // nodejs api
 const verify = util.promisify(jwt.verify); // 自定义promise话函数
-const { secret } = require('../../config/jwt');
+const { JWT_SECRET_KEY } = require('../../config/keys');
 
 module.exports = (router) => {
   // 首页
@@ -49,7 +49,7 @@ module.exports = (router) => {
   router.get('/getUserInfo', async (ctx, next) => {
     const token = ctx.header.authorization;
     try {
-      const payload = await verify(token, secret);
+      const payload = await verify(token, JWT_SECRET_KEY);
       ctx.body = {
         code: -1,
         data: payload,
@@ -79,7 +79,7 @@ module.exports = (router) => {
         nickName: 'test',
         gender: 1, // 1 => 男 0 => 女
       }
-      let token = jwt.sign(userInfo, secret, { expiresIn: 60 * 60 });
+      let token = jwt.sign(userInfo, JWT_SECRET_KEY, { expiresIn: 60 * 60 });
       ctx.body = {
         code: 0,
         data: token,

@@ -35,8 +35,9 @@ async function register({ userName, passWord, gender }) {
   const userInfo = await getUserInfo(userName);
   if (userInfo) {
     // 用户名已存在
-    return ErrorModule(userNameExist);
+    return new ErrorModule(userNameExist);
   }
+
   // 用户名不存在，创建用户
   try {
     // 创建用户成功
@@ -44,7 +45,7 @@ async function register({ userName, passWord, gender }) {
     return new SuccessModule();
   } catch (err) {
     // 创建用户失败
-    console.error(err.message, err.stack);
+    console.error(`创建用户失败：${err.message} ==== ${err.stack}`);
     return new ErrorModule(registerFail);
   }
 }

@@ -26,7 +26,7 @@ const session = require('koa-generic-session')
 const redisStore = require('koa-redis')
 const cors = require('koa2-cors')
 const { redisConfig, localConfig } = require(resolve('/src/config'))
-const secret = require(resolve('/src/config/jwt'))
+const { SESSION_SECRET_KEY, JWT_SECRET_KEY } = require(resolve('/src/config/keys'))
 
 // 路由
 const testRoutes = require(resolve('/src/routes/views/test'))
@@ -90,7 +90,7 @@ app.use(bodyparser())
  * @params: {unless} 排除不用验证接口
  * @url: 
 */
-// app.use(jwt({ secret }).unless({ path: [/^\/login/, /^\/web-test/] }));
+// app.use(jwt({ JWT_SECRET_KEY }).unless({ path: [/^\/login/, /^\/web-test/] }));
 
 /*
  * @Author: bys
@@ -104,7 +104,7 @@ app.use(bodyparser())
  * 注: session 是否配置使用成功 命令行输入 redis-cli.exe enter keys * 
 */
 const timeout = 24 * 60 * 60 * 1000
-app.keys = ['UIsdf_7878#$']
+app.keys = [SESSION_SECRET_KEY]
 app.use(session({
   key: 'weibo.sid',
   prefix: 'weibo:sess',
