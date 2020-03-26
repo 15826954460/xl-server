@@ -5,13 +5,18 @@
 */
 
 module.exports = {
-  userNameExit: {
+  userNameExist: {
     code: 10001,
     msg: '用户名已存在'
   },
   // 用户名不存在
   userNameNotExist: {
-    code: 10003,
+    code: 10002,
     msg: '用户名不存在'
+  },
+  // 用户注册失败
+  registerFail: {
+    code: 10003,
+    msg: '注册失败，请重试'
   }
 }

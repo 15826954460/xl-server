@@ -4,31 +4,23 @@
  * @Description: user Api 路由
  */
 
-const { isExist } = require('../../controller/user');
+const { isExist, register  } = require('../../controller/user');
 module.exports = (router) => {
   router.prefix('/api/user');
 
   // 登陆
   router.get('/login', (ctx, next) => {
-    ctx.body = {
-      code: 0,
-      data: {
-
-      }
-    }
+    
   });
 
   // 注册
-  router.post('/regiseter', (ctx, next) => {
-    ctx.body = {
-      code: 0,
-      data: {
-      }
-    }
+  router.post('/register', async (ctx, next) => {
+    const { userName, passWord, gender } = ctx.request.body;
+    ctx.body = await register({ userName, passWord, gender });
   });
 
   // 判断用户名是否存在
-  router.post('/isExit', async (ctx, next) => {
+  router.post('/isExist', async (ctx, next) => {
     const { userName } = ctx.request.body;
     ctx.body = await isExist(userName);
   })

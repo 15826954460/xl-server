@@ -18,7 +18,7 @@ const _formatUserPicture = (obj) => {
 }
 
 /**
- * 格式化用户信息
+ * 格式化用户信息,添加默认头像
  * @param {Array|Object} list 单个用户对象或者用户列表
  */
 function formatUser(list) {

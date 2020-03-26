@@ -15,10 +15,10 @@ const Users = Seq.define('users', {
     autoIncrement: true,        // 自动递增,默认为false
   },
   userName: {
-    type: STRING,         // 字符串类型
-    allowNull: false,     // 不允许为空
-    unique: true,         // 唯一性约束
-    comment: '用户名唯一'  // 注释
+    type: STRING,               // 字符串类型
+    allowNull: false,           // 不允许为空
+    unique: true,               // 唯一性约束
+    comment: '用户名唯一'        // 注释
   },
   passWord: {
     type: STRING,
@@ -28,20 +28,22 @@ const Users = Seq.define('users', {
   nickName: {
     type: STRING,
     allowNull: true,
-    comment: '用户昵称',    // 通过comment字段添加注释
+    comment: '用户昵称',        // 通过comment字段添加注释
   },
   gerder: {
     type: DECIMAl,
     allowNull: false,
-    defaultValue: 3,       // 默认保密
-    comment: '性别(1 男 0 女 2 保密)'
+    defaultValue: 3,           // 默认值
+    comment: '性别(1 男 2 女 3 保密)'
   },
   picture: {
     type: STRING,
+    allowNull: true,
     comment: '图像(图片地址)'
   },
   city: {
     type: STRING,
+    allowNull: true,
     comment: '城市'
   }
 }, {

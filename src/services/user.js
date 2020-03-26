@@ -8,7 +8,7 @@ const { Users } = require('../db/index');
 const { formatUser } = require('./_format');
 
 /**
- * @Description: 获取用户信息
+ * @description: 获取用户信息
  * @param {string} userName 
  * @param {string} passWord 
  */
@@ -22,7 +22,7 @@ async function getUserInfo(userName, passWord) {
     Object.assign(queryOpt, { passWord });
   }
 
-  // 查询数据库
+  // 查询用户信息
   const result = await Users.findOne({
     attributes: ['id', 'userName', 'nickName', 'picture', 'city'], // 查询信息
     where: queryOpt,                                               // 查询条件
@@ -38,6 +38,24 @@ async function getUserInfo(userName, passWord) {
   return formatResult;
 }
 
+/**
+ * @description 创建用户
+ * @param {string} userName         用户名
+ * @param {string} passWord         密码
+ * @param {string|number} gender    性别 1 男 2 女 3 保密
+ */
+async function createUser({ userName, passWord, gender = 3, nickName }) {
+  // 创建用户
+  const result = await Users.create({
+    userName,
+    passWord,
+    gender,
+    nickName: nickName ? nickName : userName
+  });
+  return result.dataValues;
+}
+
 module.exports = {
-  getUserInfo
+  getUserInfo,
+  createUser,
 }
