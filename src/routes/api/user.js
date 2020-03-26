@@ -5,6 +5,9 @@
  */
 
 const { isExist, register  } = require('../../controller/user');
+const { userValidate } = require('../../validate/user');
+const { genValidate } = require('../../middlewares/validate');
+
 module.exports = (router) => {
   router.prefix('/api/user');
 
@@ -14,7 +17,7 @@ module.exports = (router) => {
   });
 
   // 注册
-  router.post('/register', async (ctx, next) => {
+  router.post('/register', genValidate(userValidate), async (ctx, next) => {
     const { userName, passWord, gender } = ctx.request.body;
     ctx.body = await register({ userName, passWord, gender });
   });

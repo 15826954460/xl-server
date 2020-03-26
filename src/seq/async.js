@@ -23,9 +23,9 @@ seq.authenticate().then(() => {
  *  force: true: 表示强行同步，每次都会生成新的数据, 但是针对有外键关联的表会 报错
  * }
  */
-seq.sync({
-  force: false
-}).then(() => {
-  console.log('sync ok');
-  process.exit(); // 退出程序
-})
+// seq.sync({
+//   force: false
+// }).then(() => {
+//   console.log('sync ok');
+//   process.exit(); // 退出程序
+// })

@@ -45,18 +45,19 @@ const onerrorConfig = {
 };
 
 onerror(app, onerrorConfig)
-
-/*
+/**
  * @Author: bys
  * @Date: 2020-03-20 15:15:59
- * @Description: 注册 cors 中间件 要放在接口请求之前
- * @params: {origin} string 设置允许来自指定域名请求
- * @params: {maxAge} number 指定本次预检请求的有效期，单位为秒
- * @params: {credentials} boolean 是否允许发送Cookie
- * @params: {allowMethods} array 设置所允许的HTTP请求方法
- * @params: {allowHeaders} array 设置服务器支持的所有头信息字段
- * @params: {exposeHeaders} array 设置获取其他自定义字段
-*/
+ * @date 2020-03-20 15:15:59
+ * @description 注册 cors 中间件 要放在接口请求之前
+ * @param {origin} string 设置允许来自指定域名请求
+ * @param {maxAge} number 指定本次预检请求的有效期，单位为秒
+ * @param {credentials} boolean 是否允许发送Cookie
+ * @param {allowMethods} array 设置所允许的HTTP请求方法 
+ * @param {allowHeaders} array 设置服务器支持的所有头信息字段
+ * @param {exposeHeaders} array 设置获取其他自定义字段
+ */
+
 // 定义允许跨域的 origin
 const allowOrigins = [
   'http://localhost:9090',
@@ -83,24 +84,23 @@ app.use(bodyparser())
   .use(router.routes())
   .use(router.allowedMethods())
   
-/*
+/**
  * @Author: bys
  * @Date: 2020-03-19 15:24:29
- * @Description: 注册jwt
- * @params: {unless} 排除不用验证接口
- * @url: 
-*/
+ * @description 注册jwt
+ * @params {unless} 排除不用验证接口
+ */
 // app.use(jwt({ JWT_SECRET_KEY }).unless({ path: [/^\/login/, /^\/web-test/] }));
 
-/*
+/**
  * @Author: bys
  * @Date: 2020-03-11 12:01:24
- * @Description: session配置
- * @params: {key} string cookie name 默认 koa.sid
- * @params: {prefix} string session prefix 默认 koa:sess
- * @params: {cookie} object
- * @params: {ttl} number 单位ms session 过期时间, 默认和 cookie 中的保持一致，如果不写cookie 只写ttl，session的过期时间将以ttl为准
- * @params: {store} object session 数据存储到redis中
+ * @description session配置
+ * @params {key} string cookie name 默认 koa.sid
+ * @params {prefix} string session prefix 默认 koa:sess
+ * @params {cookie} object
+ * @params {ttl} number 单位ms session 过期时间, 默认和 cookie 中的保持一致，如果不写cookie 只写ttl，session的过期时间将以ttl为准
+ * @params {store} object session 数据存储到redis中
  * 注: session 是否配置使用成功 命令行输入 redis-cli.exe enter keys * 
 */
 const timeout = 24 * 60 * 60 * 1000

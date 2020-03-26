@@ -1,16 +1,38 @@
 ### 目录结构
 ```
 src
+  cache                   //   redis缓存
+    reids
   config                  //   配置文件
     constants             //   常量
     index                 //   数据库、redis、本地端口
-    jwt                   //   JWT密钥
+    keys                  //   密钥
     env                   //   环境变量
   controller              //   针对业务的统一处理，返回统一的数据格式
     user                  //   针对用户的返回信息做统一处理
+  db                      //   数据模型
+    module                //   数据建模模块
+  middleware
+    validate              //   数据格式校验的中间件
   module                  //   数据结构模型
+    errorInfo             //   统一定义错误信息
     responseModule        //   接口返回的数据模型
-  service                 //   针对数据库的操作统一处理
+  plugin
+  routes                  //   路由
+    api                   //   接口层的路由
+    views                 //   数据层路由
+  seq                     //   sequelize
+    async
+    seq
+    type
+  service                 //   数据库操作处理
+    _format               //   数据格式化返回默认值
+  utils                   //   工具类函数
+    crypto                //   md5加密
+  validate
+    _validate             //   数据格式校验
+  test                    //   单元测是代码
+  
 ```
 
 #### 技术栈
@@ -33,8 +55,9 @@ src
 - jest                      jest 单元测试
 - supertest                 配合jest做单元测试
 - passport-local            本地数据库配合 koa-passport 使用
-- koa2-jwt                   jwt校验
+- koa2-jwt                  jwt校验
 - jsonwebtoken              json加密的第三方库
+- ajv                       数据格式检验库  
 
 #### 命令说明
 - "test": "cross-env NODE_ENV=test jest --runInBand --forceExit --colors",

@@ -18,5 +18,10 @@ module.exports = {
   registerFail: {
     code: 10003,
     msg: '注册失败，请重试'
+  },
+  // 参数错误
+  jsonSchemaValidateError: {
+    code: 10004,
+    msg: '数据格式校验错误'
   }
 }
