@@ -30,7 +30,7 @@ const Users = Seq.define('users', {
     allowNull: true,
     comment: '用户昵称',        // 通过comment字段添加注释
   },
-  gerder: {
+  gender: {
     type: DECIMAl,
     allowNull: false,
     defaultValue: 3,           // 默认值
