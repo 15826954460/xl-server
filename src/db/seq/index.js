@@ -7,12 +7,12 @@
 const Sequelize = require('sequelize');
 const {
   mysqlConfig
-} = require('../config');
+} = require('../../config');
 
 const {
   isProd,
   isTest
-} = require('../config/env');
+} = require('../../config/env');
 
 // 结构赋值
 const {

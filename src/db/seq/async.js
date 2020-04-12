@@ -4,9 +4,9 @@
  * @Description: 数据同步到数据库
  * @params:
  */
-const seq = require('./seq');
+const seq = require('.');
 
-require('../db/index'); // 引入数据模型
+require('../index'); // 引入数据模型
 
 // 测试链接数据是否成功
 seq.authenticate().then(() => {

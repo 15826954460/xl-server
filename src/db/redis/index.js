@@ -5,7 +5,7 @@
  */
 
 const redis = require('reids');
-const { redisConfig } = require('../config');
+const { redisConfig } = require('../../config');
 
 // 创建客户端
 const redisClient = redis.createClient(redisConfig.prot, redisConfig.host);
