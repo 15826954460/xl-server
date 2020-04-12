@@ -65,9 +65,10 @@ async function login({ ctx, userName, passWord }) {
     // 登陆失败
     return new ErrorModule(loginError);
   }
-  // 登陆成功
-  console.log(`登陆成功：${JSON.stringify(userInfo)}`);
+
+  // 登陆成功,设置session
   ctx.session.userInfo = { ...userInfo };
+  console.log(`登陆成功获取session`, ctx.session);
   
   return new SuccessModule({
     data: userInfo

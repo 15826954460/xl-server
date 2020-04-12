@@ -1,6 +1,6 @@
-/*
- * @Author: bys
- * @Date: 2020-03-26 16:23:16
+/**
+ * @Author bys
+ * @Date 2020-03-26 16:23:16
  * @description: json schema 数据校验
  */
 const Ajv = require('ajv');

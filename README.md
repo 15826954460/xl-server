@@ -76,6 +76,18 @@ jest 测试用列 文件必须以 .test.js 结尾  格式为 xxx.test.js
 #### jwt postman 测试接口
 headers 中添加 key: Authorization  value: 加密的tokan
 
+#### 关于项目开发中遇到的一些问题
+1、
+2、服务端设置session成功，但是另一个接口获取不到设置到session中的数据
+```js
+// 服务端修改： cors 中间件设置
+app.use(cors({
+  credentials: true,
+})
+
+// 注意：前端必须要允许浏览器携带请求凭证，以客户端axios为例： withCredentials 要设置为 true
+```
+
 
 ##### 
 cd folder

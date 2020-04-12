@@ -14,10 +14,10 @@ const debug = require('debug')('koa2:server')
 const path = require('path')
 const jwt = require('koa-jwt')
 
-/*
- * @Author: bys
- * @Date: 2020-03-11 11:55:43
- * @Description: 引入第三方库的使用
+/**
+ * @Author bys
+ * @Date 2020-03-11 11:55:43
+ * @Description 引入第三方库的使用
 */
 function resolve (dir) {
   return path.join(__dirname, dir)
@@ -46,10 +46,8 @@ const onerrorConfig = {
 
 onerror(app, onerrorConfig)
 /**
- * @Author: bys
- * @Date: 2020-03-20 15:15:59
  * @date 2020-03-20 15:15:59
- * @description 注册 cors 中间件 要放在接口请求之前
+ * @description 注册 cors 中间件
  * @param {origin} string 设置允许来自指定域名请求
  * @param {maxAge} number 指定本次预检请求的有效期，单位为秒
  * @param {credentials} boolean 是否允许发送Cookie
@@ -70,7 +68,7 @@ app.use(cors({
     return false;
   },
   maxAge: 5,
-  credentials: false,
+  credentials: true,
   allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowHeaders: ['Content-Type', 'Authorization', 'Accept',],
   exposeHeaders: ['token']
@@ -83,16 +81,12 @@ app.use(bodyparser())
   .use(require('koa-static')(resolve('/src/public')))
   
 /**
- * @Author: bys
- * @Date: 2020-03-19 15:24:29
  * @description 注册jwt
  * @params {unless} 排除不用验证接口
  */
 // app.use(jwt({ JWT_SECRET_KEY }).unless({ path: [/^\/login/, /^\/web-test/] }));
 
 /**
- * @Author: bys
- * @Date: 2020-03-11 12:01:24
  * @description session配置
  * @params {key} string cookie name 默认 koa.sid
  * @params {prefix} string session prefix 默认 koa:sess
@@ -141,7 +135,7 @@ app.on('error', function(err, ctx) {
 })
 
 app.listen(port, () => {
-  console.log(`Listening on http://192.168.1.5:${localConfig.port}`)
+  console.log(`Listening on http://192.168.5.6:${localConfig.port}`)
 });
 
 module.exports = app;

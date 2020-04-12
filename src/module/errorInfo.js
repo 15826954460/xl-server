@@ -28,5 +28,9 @@ module.exports = {
   loginError: {
     code: 10005,
     msg: '用户名或密码错误'
+  },
+  loginCheckFail: {
+    code: 10006,
+    msg: '您尚未登陆'
   }
 }
