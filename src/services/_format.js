@@ -1,13 +1,13 @@
-/*
- * @Author: bys
- * @Date: 2020-03-21 20:14:26
- * @Description: 数据格式化
+/**
+ * @author 柏运送
+ * @date 2020-03-21 20:14:26
+ * @description 数据格式化
 */
 
 const { DEFAULT_PICTURE } = require('../config/constants');
 
 /**
- * 默认用户图像
+ * @description 默认用户图像
  * @param {Object} obj 用户对象
  */
 const _formatUserPicture = (obj) => {
@@ -18,7 +18,7 @@ const _formatUserPicture = (obj) => {
 }
 
 /**
- * 格式化用户信息,添加默认头像
+ * @description 格式化用户信息,添加默认头像
  * @param {Array|Object} list 单个用户对象或者用户列表
  */
 function formatUser(list) {

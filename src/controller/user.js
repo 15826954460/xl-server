@@ -1,7 +1,7 @@
-/*
- * @author: bys
- * @date: 2020-03-21 19:50:22
- * @description: user controller
+/**
+ * @author bys
+ * @date 2020-03-21 19:50:22
+ * @description user controller
 */
 
 const { getUserInfo, createUser, deleteUser } = require('../services/user');

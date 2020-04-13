@@ -1,7 +1,7 @@
-/*
- * @Author: bys
- * @Date: 2020-03-10 21:50:35
- * @Description: 链接redis的方法
+/**
+ * @author 柏运送
+ * @date 2020-03-10 21:50:35
+ * @description: 链接redis的方法
  */
 
 const redis = require('reids');
@@ -16,13 +16,11 @@ redisClient.on('error', err => {
 });
 
 const redisApi = {
-  /*
-   * @Author: bys
-   * @Date: 2020-03-10 22:15:18
-   * @Description: redis set
-   * @params: {string} key 键
-   * @params: {string} val 值
-   * @params: {number} timeout 过期时间 单位 s
+  /**
+   * @description redis set
+   * @param {string} key 键
+   * @param {string} val 值
+   * @param {number} timeout 过期时间 单位 s
    */
   set: ({ key, val, timeout = 60 * 60 } = {}) => {
     if (typeof val === 'object' || typeof val === 'number') {
@@ -32,11 +30,9 @@ const redisApi = {
     redisClient.expire(key, timeout); // 设置过期时间
   },
 
-  /*
-   * @Author: bys
-   * @Date: 2020-03-11 11:11:17
-   * @Description: reids get
-   * @params: {string} key 键
+  /**
+   * @description reids get
+   * @param {string} key 键
    */
   get: (key) => {
     const promise = new Promise((resolve, reject) => {

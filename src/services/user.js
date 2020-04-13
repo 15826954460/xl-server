@@ -1,7 +1,7 @@
-/*
- * @Author: bys
- * @Date: 2020-03-21 20:01:44
- * @Description: user services
+/**
+ * @author 柏运送
+ * @date 2020-03-21 20:01:44
+ * @description user services
 */
 
 const { Users } = require('../db/index');

@@ -1,11 +1,11 @@
-/*
- * @Author: bys
- * @Date: 2020-03-21 21:15:28
- * @Description: 接口返回的数据模型
+/**
+ * @author 柏运送
+ * @date 2020-03-21 21:15:28
+ * @description 接口返回的数据模型
  */
 
 /**
- * baseModule
+ * @description baseModule
  */
 class BaseModule {
   constructor({code, data, msg}) {
@@ -20,7 +20,7 @@ class BaseModule {
 }
 
 /**
- * success 数据模型
+ * @description success 数据模型
  */
 class SuccessModule extends BaseModule {
   constructor(data = {}) {

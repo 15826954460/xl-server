@@ -1,7 +1,7 @@
-/*
- * @Author: bys
- * @Date: 2020-03-21 21:34:38
- * @Description: 失败信息集合
+/**
+ * @author 柏运送
+ * @date 2020-03-21 21:34:38
+ * @description 失败信息集合
 */
 
 module.exports = {

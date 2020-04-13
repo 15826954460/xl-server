@@ -1,7 +1,7 @@
 /**
- * @Author bys
- * @Date 2020-03-26 17:03:20
- * @description: 数据格式校验中间件
+ * @author 柏运送
+ * @date 2020-03-26 17:03:20
+ * @description 数据格式校验中间件
 */
 
 const { ErrorModule } = require('../module/responseModule');

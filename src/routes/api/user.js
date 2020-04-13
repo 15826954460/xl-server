@@ -1,7 +1,7 @@
-/*
- * @Author: bys
- * @Date: 2020-03-21 19:42:47
- * @Description: user Api 路由
+/**
+ * @author 柏运送
+ * @date 2020-03-21 19:42:47
+ * @description user Api 路由
  */
 
 const {

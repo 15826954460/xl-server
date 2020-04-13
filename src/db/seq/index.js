@@ -1,8 +1,7 @@
-/*
- * @Author: bys
- * @Date: 2020-03-12 15:57:00
- * @Description: sequelize 实例
- * @params:
+/**
+ * @author 柏运送
+ * @date 2020-03-12 15:57:00
+ * @description sequelize 实例
  */
 const Sequelize = require('sequelize');
 const {
@@ -22,11 +21,8 @@ const {
   ...conf
 } = mysqlConfig;
 
-/*
- * @Author: bys
- * @Date: 2020-03-12 16:47:47
- * @Description: 测试环境或者生产环境关闭 sequelize 的日志打印
- * @params:
+/**
+ * @description: 测试环境或者生产环境关闭 sequelize 的日志打印
  */
 if (isProd || isTest) {
   conf.logging = () => {}

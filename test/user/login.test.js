@@ -1,7 +1,7 @@
-/*
- * @Author: bys
- * @Date: 2020-04-13 10:37:37
- * @description: 用户相关的api接口测试
+/**
+ * @author 柏运送
+ * @date 2020-04-13 10:37:37
+ * @description 用户相关的api接口测试
 */
 
 const server = require('../server');

@@ -1,3 +1,9 @@
+/**
+ * @author 柏运送
+ * @date 2020-04-13 15:40:10
+ * @description jwt 测试
+*/
+
 const jwt = require('jsonwebtoken');
 const util = require('util'); // nodejs api
 const verify = util.promisify(jwt.verify); // 自定义promise话函数
@@ -24,11 +30,8 @@ module.exports = (router) => {
     }
   });
 
-  /*
-   * @Author: bys
-   * @Date: 2020-03-20 10:30:39
-   * @Description: 针对web 测试提供的测试接口
-   * @params:
+  /**
+   * @description 针对web 测试提供的测试接口
   */
   router.get('/web-test', async (ctx, next) => {
     ctx.body = {
@@ -39,12 +42,9 @@ module.exports = (router) => {
     }
   });
 
-  /*
-    * @Author: bys
-    * @Date: 2020-03-20 10:15:00
-    * @Description: 模拟获取用户信息
-    * @url: https://www.npmjs.com/package/jsonwebtoken
-    * @params: 
+  /**
+    * @description 模拟获取用户信息
+    * @url 学习文档 https://www.npmjs.com/package/jsonwebtoken
   */
   router.get('/getUserInfo', async (ctx, next) => {
     const token = ctx.header.authorization;
@@ -63,12 +63,9 @@ module.exports = (router) => {
     }
   })
 
-  /*
-   * @Author: bys
-   * @Date: 2020-03-20 10:24:25
-   * @Description: 模拟加密用户信息
-   * @url: https://www.npmjs.com/package/jsonwebtoken
-   * @params:
+  /**
+   * @description 模拟加密用户信息
+   * @url 学习文档 https://www.npmjs.com/package/jsonwebtoken
   */
   router.post('/login', async (ctx, next) => {
     const { userName, passWord } = ctx.request.body;

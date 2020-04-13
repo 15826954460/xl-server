@@ -1,8 +1,7 @@
-/*
- * @Author: bys
- * @Date: 2020-03-21 16:30:36
- * @Description: 数据类型的简易封装
- * @params:
+/**
+ * @author 柏运送
+ * @date 2020-03-21 16:30:36
+ * @description 数据类型的简易封装
 */
 const Sequelize = require('sequelize');
 

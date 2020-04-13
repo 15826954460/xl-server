@@ -1,6 +1,6 @@
-/*
- * @Author: bys
- * @Date: 2020-03-26 15:13:33
+/**
+ * @author 柏运送
+ * @date 2020-03-26 15:13:33
  * @description: md5 加密
  */
 
@@ -20,7 +20,6 @@ function _md5(content) {
 }
 
 /**
- * 
  * @param {string} content 明文
  */
 function doCrypto(content) {

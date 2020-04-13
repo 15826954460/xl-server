@@ -1,8 +1,8 @@
-/*
- * @Author: bys
- * @Date: 2020-03-21 16:20:34
- * @Description: 用户数据模型
- * @url: https://www.cnblogs.com/zzsdream/p/11088678.html
+/**
+ * @author bys
+ * @date 2020-03-21 16:20:34
+ * @description 用户数据模型
+ * @url 文档 https://www.cnblogs.com/zzsdream/p/11088678.html
  */
 const Seq = require('../seq');
 const { STRING, DECIMAl, INTEGER } = require('../seq/type')

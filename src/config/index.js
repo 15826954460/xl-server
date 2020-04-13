@@ -1,21 +1,21 @@
+/**
+ * @author 柏运送
+ * @date 2020-03-13 18:21:59
+ * @description: 配置文件
+*/
+
 const { isDev, isProd, isTest } = require('./env');
 
-/*
- * @Author: bys
- * @Date: 2020-03-13 18:21:59
- * @Description: redis 配置
- * @params:
+/**
+ * @description redis 配置
  */
 let redisConfig = {
   prot: 6379, // 默认端口
   host: '127.0.0.1' // 本机域名地址
 };
 
-/*
- * @Author: bys
- * @Date: 2020-03-13 18:21:59
- * @Description: mysql 配置
- * @params:
+/**
+ * @description mysql 配置
  */
 let mysqlConfig = {
   database: 'koa2_xl', // 数据库的名称

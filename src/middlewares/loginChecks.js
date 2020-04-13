@@ -1,14 +1,14 @@
 /**
- * @Author bys
- * @Date 2020-04-12 09:50:42
- * @Description 登陆验证中间件 
+ * @author 柏运送
+ * @date 2020-04-12 09:50:42
+ * @description 登陆验证中间件 
  */
 
 const { ErrorModule } = require('../module/responseModule');
 const { loginCheckFail } = require('../module/errorInfo');
 
 /**
- * API 登陆验证
+ * @description API 登陆验证
  * @param {object} ctx  koa2 ctx 
  * @param {function} next koa2 next 
  */
