@@ -12,7 +12,6 @@ const ajv = new Ajv();
  */
 
 function validate(schema, data = {}) {
-  console.log(JSON.stringify(schema), JSON.stringify(data));
   const valid = ajv.validate(schema, data);
   if (!valid) {
     console.log(`${JSON.stringify(ajv.errors)}`);
