@@ -5,8 +5,10 @@
  */
 
 const {
-  isExist, register, login 
+  isExist, register, login, deleteCurrentUser
 } = require('../../controller/user');
+
+const { isPro } = require('../../config/env');
 
 const { userValidate } = require('../../validate/user');
 const { genValidate } = require('../../middlewares/validate');
@@ -31,6 +33,13 @@ module.exports = (router) => {
   router.post('/isExist', async (ctx, next) => {
     const { userName } = ctx.request.body;
     ctx.body = await isExist({ userName });
+  })
+
+  // 删除当前用户，只有在非生产环境下生效
+  router.post('/deleteCurrentUser', loginCheck, async (ctx, next) => {
+    if (isPro) return;
+    const { userName } = ctx.session.userInfo;
+    ctx.body = await deleteCurrentUser({ userName })
   })
 
   // 测试登陆验证的接口

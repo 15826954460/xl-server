@@ -58,7 +58,23 @@ async function createUser({ userName, passWord, gender = 3, nickName }) {
   return result.dataValues;
 }
 
+/**
+ * @description 删除用户
+ * @param {string} userName 用户名
+ */
+async function deleteUser(userName) {
+  const result = await Users.destroy({
+    where: {
+      userName
+    }
+  });
+  // 返回删除的行数
+  return result > 0;
+}
+
+
 module.exports = {
   getUserInfo,
   createUser,
+  deleteUser,
 }

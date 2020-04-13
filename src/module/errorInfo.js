@@ -29,8 +29,14 @@ module.exports = {
     code: 10005,
     msg: '用户名或密码错误'
   },
+  // 登陆验证失败
   loginCheckFail: {
     code: 10006,
+    msg: '您尚未登陆'
+  },
+  // 删除用户失败
+  deleteUserFail: {
+    code: 10007,
     msg: '您尚未登陆'
   }
 }

@@ -4,10 +4,10 @@
  * @description: user controller
 */
 
-const { getUserInfo, createUser } = require('../services/user');
+const { getUserInfo, createUser, deleteUser } = require('../services/user');
 const { SuccessModule, ErrorModule } = require('../module/responseModule');
 const { 
-  userNameNotExist, userNameExist, registerFail, loginError
+  userNameNotExist, userNameExist, registerFail, loginError, deleteUserFail
 } = require('../module/errorInfo');
 
 /**
@@ -75,8 +75,24 @@ async function login({ ctx, userName, passWord }) {
   });
 }
 
+/**
+ * @description 删除当前用户
+ * @param {string} userName 用户名 
+ */
+async function deleteCurrentUser({ userName }) {
+  const result = await deleteUser(userName);
+  if (result) {
+    // 成功
+    return new SuccessModule();
+  } else {
+    // 失败
+    return new ErrorModule(deleteUserFail);
+  }
+}
+
 module.exports = {
   isExist,
   register,
   login,
+  deleteCurrentUser,
 }
