@@ -8,7 +8,7 @@
  * @description baseModule
  */
 class BaseModule {
-  constructor({code, data, msg}) {
+  constructor({ code, data, msg }) {
     this.code = code
     if (data) {
       this.data = data
@@ -24,19 +24,13 @@ class BaseModule {
  */
 class SuccessModule extends BaseModule {
   constructor(data = {}) {
-    super({
-      code: 0,
-      data
-    })
+    super({ code: 0, data })
   }
 }
 
 class ErrorModule extends BaseModule {
   constructor({ code, msg }) {
-    super({
-      code,
-      msg,
-    })
+    super({ code, msg })
   }
 }
 

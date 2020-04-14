@@ -5,11 +5,9 @@
  */
 
 const {
-  isExist, register, login, deleteCurrentUser
+  isExist, register, login, deleteCurrentUser, getSession
 } = require('../../controller/user');
-
 const { isPro } = require('../../config/env');
-
 const { userValidate } = require('../../validate/user');
 const { genValidate } = require('../../middlewares/validate');
 const { loginCheck } = require('../../middlewares/loginChecks');
@@ -33,6 +31,11 @@ module.exports = (router) => {
   router.post('/isExist', async (ctx, next) => {
     const { userName } = ctx.request.body;
     ctx.body = await isExist({ userName });
+  })
+
+  // 通过session获取用户信息
+  router.get('/getUserInfo', loginCheck, async (ctx, next) => {
+    ctx.body = await getSession({ ctx });
   })
 
   // 删除当前用户，只有在非生产环境下生效

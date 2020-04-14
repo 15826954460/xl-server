@@ -7,7 +7,8 @@
 const { getUserInfo, createUser, deleteUser } = require('../services/user');
 const { SuccessModule, ErrorModule } = require('../module/responseModule');
 const { 
-  userNameNotExist, userNameExist, registerFail, loginError, deleteUserFail
+  userNameNotExist, userNameExist, registerFail, loginError, deleteUserFail,
+  getSessionFail
 } = require('../module/errorInfo');
 
 /**
@@ -90,9 +91,23 @@ async function deleteCurrentUser({ userName }) {
   }
 }
 
+/**
+ * @description 返回session
+ * @param {object} ctx koa2 ctx
+ */
+async function getSession({ ctx }) {
+  const { userInfo } = ctx.session;
+  if (userInfo) {
+    return new SuccessModule(userInfo)
+  } else {
+    return new ErrorModule(getSessionFail);
+  } 
+}
+
 module.exports = {
   isExist,
   register,
   login,
   deleteCurrentUser,
+  getSession,
 }

@@ -58,6 +58,7 @@ src
 - koa2-jwt                  jwt校验
 - jsonwebtoken              json加密的第三方库
 - ajv                       数据格式检验库  
+- fs-extra                  nodejs 的 fs 模块扩展
 
 #### 命令说明
 - "test": "cross-env NODE_ENV=test jest --runInBand --forceExit --colors",

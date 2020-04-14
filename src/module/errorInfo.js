@@ -38,5 +38,10 @@ module.exports = {
   deleteUserFail: {
     code: 10007,
     msg: '您尚未登陆'
+  },
+  // session 过期
+  getSessionFail: {
+    code: 10008,
+    msg: 'session 过期，请重新登陆'
   }
 }

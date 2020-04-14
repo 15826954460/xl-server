@@ -4,5 +4,5 @@
  * @description 常量
 */
 module.exports = {
-  DEFAULT_PICTURE: 'https://dwz.cn/rnTnftZs', // 默认用户图像
-} 
+  DEFAULT_PICTURE: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png', // 默认用户图像
+}
