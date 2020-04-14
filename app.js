@@ -1,3 +1,9 @@
+/**
+ * @Author bys
+ * @Date 2020-03-11 11:55:43
+ * @Description koa 入口文件
+*/
+
 const Koa = require('koa')
 const Router = require('koa-router')
 const app = new Koa()
@@ -13,12 +19,8 @@ const logger = require('koa-logger')
 const debug = require('debug')('koa2:server')
 const path = require('path')
 const jwt = require('koa-jwt')
+const koaBody = require('koa-body')
 
-/**
- * @Author bys
- * @Date 2020-03-11 11:55:43
- * @Description 引入第三方库的使用
-*/
 function resolve (dir) {
   return path.join(__dirname, dir)
 }
@@ -32,6 +34,7 @@ const { SESSION_SECRET_KEY, JWT_SECRET_KEY } = require(resolve('/src/config/keys
 const testRoutes = require(resolve('/src/routes/views/test'))
 const userViewsRoutes = require(resolve('/src/routes/views/user'))
 const userApiRoutes = require(resolve('/src/routes/api/user'))
+const uploadfileApiRoutes = require(resolve('/src/routes/api/uploadfile'))
 
 // 本地服务的端口
 const port = process.env.PORT || localConfig.port
@@ -46,7 +49,6 @@ const onerrorConfig = {
 
 onerror(app, onerrorConfig)
 /**
- * @date 2020-03-20 15:15:59
  * @description 注册 cors 中间件
  * @param {origin} string 设置允许来自指定域名请求
  * @param {maxAge} number 指定本次预检请求的有效期，单位为秒
@@ -75,10 +77,12 @@ app.use(cors({
 }));
 
 // middlewares
-app.use(bodyparser())
+app
+  // .use(bodyparser())
   .use(json())
   .use(logger())
   .use(require('koa-static')(resolve('/src/public')))
+  .use(koaBody({ multipart: true }));
   
 /**
  * @description 注册jwt
@@ -121,12 +125,13 @@ app.use(async (ctx, next) => {
   console.log(`${ctx.method} ${ctx.url} - $ms`)
 });
 
-app.use(router.routes()).use(router.allowedMethods())
-
 // routes
-userViewsRoutes(router)
-userApiRoutes(router)
-testRoutes(router)  // 路由测试模块
+app.use(userViewsRoutes.routes()).use(userViewsRoutes.allowedMethods())
+
+app.use(userApiRoutes.routes()).use(userApiRoutes.allowedMethods())
+app.use(uploadfileApiRoutes.routes()).use(uploadfileApiRoutes.allowedMethods())
+
+app.use(testRoutes.routes()).use(testRoutes.allowedMethods())
 
 
 app.on('error', function(err, ctx) {

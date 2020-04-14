@@ -43,5 +43,10 @@ module.exports = {
   getSessionFail: {
     code: 10008,
     msg: 'session 过期，请重新登陆'
+  },
+  // 文件尺寸过大
+  fileSizeOverMaxSize: {
+    code: 10009,
+    msg: '文件大小超过5M'
   }
 }

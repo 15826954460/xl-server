@@ -48,17 +48,19 @@ src
 - mysql2                    koa链接mysql
 - koa-redis                 koa链接redis库     
 - koa-generic-session       kos生成session  链接：https://www.npmjs.com/package/
+- koa2-cors                 解决服务端的跨域
+- koa2-jwt                  jwt校验
+- koa-body                  文件上传 http://www.ptbird.cn/koa-body.html
 - cross-env                 跨平台环境设置
 - pre-commit                结合eslint强制 commit 之前进行 eslint 代码检测
-- koa2-cors                 解决服务端的跨域
 - nodemon                   nodejs开发调试工具
 - jest                      jest 单元测试
 - supertest                 配合jest做单元测试
 - passport-local            本地数据库配合 koa-passport 使用
-- koa2-jwt                  jwt校验
 - jsonwebtoken              json加密的第三方库
 - ajv                       数据格式检验库  
 - fs-extra                  nodejs 的 fs 模块扩展
+
 
 #### 命令说明
 - "test": "cross-env NODE_ENV=test jest --runInBand --forceExit --colors",
