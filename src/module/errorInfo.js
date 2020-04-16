@@ -48,5 +48,10 @@ module.exports = {
   fileSizeOverMaxSize: {
     code: 10009,
     msg: '文件大小超过5M'
+  },
+  // 修改用户信息失败
+  updateUserInfoFail: {
+    code: 10010,
+    msg: '修改用户信息失败'
   }
 }

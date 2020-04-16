@@ -4,11 +4,13 @@
  * @description user controller
 */
 
-const { getUserInfo, createUser, deleteUser } = require('../services/user');
+const { 
+  getUserInfo, createUser, deleteUser, updateUser
+} = require('../services/user');
 const { SuccessModule, ErrorModule } = require('../module/responseModule');
 const { 
   userNameNotExist, userNameExist, registerFail, loginError, deleteUserFail,
-  getSessionFail
+  getSessionFail, updateUserInfoFail
 } = require('../module/errorInfo');
 
 /**
@@ -92,7 +94,7 @@ async function deleteCurrentUser({ userName }) {
 }
 
 /**
- * @description 返回session
+ * @description 获取session
  * @param {object} ctx koa2 ctx
  */
 async function getSession({ ctx }) {
@@ -104,10 +106,38 @@ async function getSession({ ctx }) {
   } 
 }
 
+/**
+ * @description 跟新用户信息
+ * @param {object} ctx koa ctx
+ * @param {string} nickName 昵称
+ * @param {string} picture 图像
+ * @param {string} city 城市
+ */
+async function updateUserInfo ({ ctx, nickName, picture, city }) {
+  const { userName } = ctx.session.userInfo;
+  if (!nickName) {
+    nickName = userName;
+  }
+  const result = await updateUser({ userName, nickName, picture, city });
+  if (result) {
+    ctx.session.userInfo = {
+      ...ctx.session.userInfo,
+      nickName,
+      picture,
+      city
+    }
+    return new SuccessModule({
+      ...ctx.session.userInfo
+    });
+  }
+  return new ErrorModule(updateUserInfoFail);
+}
+
 module.exports = {
   isExist,
   register,
   login,
   deleteCurrentUser,
   getSession,
+  updateUserInfo,
 }

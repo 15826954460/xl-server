@@ -72,9 +72,46 @@ async function deleteUser(userName) {
   return result > 0;
 }
 
+/**
+ * 修改用户信息
+ * @param {string} userName 
+ * @param {string} nickName 
+ * @param {string} picture
+ * @param {string} city
+ * @param {string} passWord 
+ */
+async function updateUser({ userName, nickName, picture, city, passWord }) {
+  // 修改的数据
+  const updateData = {};
+  if (passWord) {
+    updateData.passWord = passWord;
+  }
+  if (nickName) {
+    updateData.nickName = nickName
+  }
+  if (picture) {
+    updateData.picture = picture
+  }
+  if (city) {
+    updateData.city = city
+  }
+
+  // 查寻条件
+  const whereData = { userName };
+  if (passWord) {
+    whereData.passWord = passWord;
+  }
+
+  const result = await Users.update(updateData, {
+    where: whereData
+  });
+  console.log(`跟新用户信息返回的数据： ${JSON.stringify(result)}`);
+  return result[0] > 0;
+}
 
 module.exports = {
   getUserInfo,
   createUser,
   deleteUser,
+  updateUser,
 }

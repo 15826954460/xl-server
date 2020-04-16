@@ -8,7 +8,8 @@ const Router = require('koa-router');
 const router = new Router();
 
 const {
-  isExist, register, login, deleteCurrentUser, getSession
+  isExist, register, login, deleteCurrentUser, getSession,
+  updateUserInfo,
 } = require('../../controller/user');
 const { isPro } = require('../../config/env');
 const { userValidate } = require('../../validate/user');
@@ -48,14 +49,10 @@ router.delete('/deleteCurrentUser', loginCheck, async (ctx, next) => {
   ctx.body = await deleteCurrentUser({ userName })
 })
 
-// 测试登陆验证的接口
-router.post('/test', loginCheck, async (ctx, next) => {
-  ctx.body = {
-    code: 0,
-    data: {
-      msg: '登陆成功'
-    }
-  };
+// 修改用户信息
+router.put('/updateUserInfo', loginCheck,  async (ctx, next) => {
+  const { nickName, picture, city } = ctx.request.body;
+  ctx.body = await updateUserInfo({ ctx, nickName, picture, city })
 })
 
 
