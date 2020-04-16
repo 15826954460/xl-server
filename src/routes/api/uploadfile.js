@@ -8,15 +8,21 @@ const Router = require('koa-router');
 const router = new Router();
 
 
-const { loginCheck } = require('../../middlewares/loginChecks');
+const { sessionCheck } = require('../../middlewares/loginChecks');
 const { saveFile } = require('../../controller/uploadfile');
 
 // 设置路由前缀
 router.prefix('/api/file');
 
-router.post('/fileUpload', async (ctx, next) => {
-  // 单个文件，多个文件 返回列表
+router.post('/fileUpload', sessionCheck, async (ctx, next) => {
+  // 单个文件，返回文件对象，多个文件 返回列表
   const file = ctx.request.files.file;
+  if (!file) {
+    ctx.body = {
+      code: 0,
+      msg: 'file 对象不存在'
+    }
+  }
   const { size, path, name, type } = file;
   ctx.body = await saveFile({ size, path, name, type })
 })

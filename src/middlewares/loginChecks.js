@@ -5,7 +5,7 @@
  */
 
 const { ErrorModule } = require('../module/responseModule');
-const { loginCheckFail } = require('../module/errorInfo');
+const { loginCheckFail, getSessionFail } = require('../module/errorInfo');
 
 /**
  * @description API 登陆验证
@@ -23,6 +23,23 @@ const loginCheck = async (ctx, next) => {
   ctx.body = new ErrorModule(loginCheckFail);
 }
 
+/**
+ * @description API session 验证
+ * @param {*} ctx 
+ * @param {*} next 
+ */
+const sessionCheck = async (ctx, next) => {
+  // 用户已经登陆
+  if (ctx.session && ctx.session.userInfo) {
+    await next();
+    return;
+  };
+
+  // 用户未登录
+  ctx.body = new ErrorModule(getSessionFail);
+}
+
 module.exports = {
   loginCheck,
+  sessionCheck,
 }

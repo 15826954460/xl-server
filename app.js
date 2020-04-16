@@ -6,20 +6,21 @@
 
 const Koa = require('koa')
 const Router = require('koa-router')
-const app = new Koa()
-const router = new Router()
-
-// const views = require('koa-views')
-// const co = require('co')
 const convert = require('koa-convert')
 const json = require('koa-json')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 const debug = require('debug')('koa2:server')
-const path = require('path')
 const jwt = require('koa-jwt')
 const koaBody = require('koa-body')
+// const views = require('koa-views')
+// const co = require('co')
+
+const path = require('path')
+
+const app = new Koa()
+const router = new Router()
 
 function resolve (dir) {
   return path.join(__dirname, dir)
@@ -71,7 +72,7 @@ app.use(cors({
   },
   maxAge: 5,
   credentials: true,
-  allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
   allowHeaders: ['Content-Type', 'Authorization', 'Accept',],
   exposeHeaders: ['token']
 }));
@@ -99,7 +100,7 @@ app
  * @params {store} object session 数据存储到redis中
  * 注: session 是否配置使用成功 命令行输入 redis-cli.exe enter keys * 
 */
-const timeout = 24 * 60 * 60 * 1000
+const EXPIRSES_TIME = 24 * 60 * 60 * 1000;
 app.keys = [SESSION_SECRET_KEY]
 app.use(session({
   key: 'weibo.sid',
@@ -107,7 +108,7 @@ app.use(session({
   cookie: {
     path: '/',                      // 定义访问路径 / => 表示所有的的都可以访问
     httpOnly: true,                 // 定义只允许服务端修改
-    maxAge: timeout,                // 过期时间 单位 ms,
+    maxAge: EXPIRSES_TIME,          // 过期时间 单位 ms,
     overwrite: true,
     signed: true
   },

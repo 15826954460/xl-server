@@ -42,7 +42,7 @@ router.get('/getUserInfo', loginCheck, async (ctx, next) => {
 })
 
 // 删除当前用户，只有在非生产环境下生效
-router.post('/deleteCurrentUser', loginCheck, async (ctx, next) => {
+router.delete('/deleteCurrentUser', loginCheck, async (ctx, next) => {
   if (isPro) return;
   const { userName } = ctx.session.userInfo;
   ctx.body = await deleteCurrentUser({ userName })
