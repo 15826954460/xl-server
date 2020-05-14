@@ -20,7 +20,7 @@ let redisConfig = {
 let mysqlConfig = {
   database: 'koa2_xl', // 数据库的名称
   username: 'root', // 用户名
-  password: 'bys2020', // 数据库密码
+  password: 'bys', // 数据库密码
   host: 'localhost', // 域名
   dialect: 'mysql', // 声明要操作的数据库
   port: 3306, // 默认端口

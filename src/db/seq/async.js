@@ -9,9 +9,9 @@ require('../index'); // 引入数据模型
 
 // 测试链接数据是否成功
 seq.authenticate().then(() => {
-  console.log('auth ok');
+  console.log('连接数据库 ok');
 }).catch(err => {
-  console.log('auth err');
+  console.log('连接数据库 err');
 })
 
 /**
@@ -21,9 +21,9 @@ seq.authenticate().then(() => {
  *   force: true: 表示强行同步，每次都会生成新的数据, 但是针对有外键关联的表会 报错
  * }
  */
-// seq.sync({
-//   force: false
-// }).then(() => {
-//   console.log('sync ok');
-//   process.exit(); // 退出程序
-// })
+seq.sync({
+  force: false
+}).then(() => {
+  console.log('同步数据 sync ok');
+  process.exit(); // 退出程序
+})

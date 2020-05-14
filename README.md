@@ -1,3 +1,13 @@
+### 项目启动
+1. npm install
+2. 启动mysql  查看连接mysql连接是否成功 npm run mysql
+3. 启动redis
+4. npm run dev
+
+#### 接口测试
+http://localhosst:9090/api/user/login?userName=""&passWord=""
+ 
+
 ### 目录结构
 ```
 src

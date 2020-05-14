@@ -68,7 +68,7 @@ app.use(cors({
     if (allowOrigins.includes(ctx.header.origin)) {
       return ctx.header.origin;
     }
-    return false;
+    return true;
   },
   maxAge: 5,
   credentials: true,
