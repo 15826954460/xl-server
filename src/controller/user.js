@@ -5,12 +5,12 @@
 */
 
 const { 
-  getUserInfo, createUser, deleteUser, updateUser
+  getUserInfo, createUser, deleteUser, updateUser,
 } = require('../services/user');
 const { SuccessModule, ErrorModule } = require('../module/responseModule');
 const { 
   userNameNotExist, userNameExist, registerFail, loginError, deleteUserFail,
-  getSessionFail, updateUserInfoFail
+  getSessionFail, updateUserInfoFail, updatePasswordFail,
 } = require('../module/errorInfo');
 
 /**
@@ -133,6 +133,20 @@ async function updateUserInfo ({ ctx, nickName, picture, city }) {
   return new ErrorModule(updateUserInfoFail);
 }
 
+/**
+ * @description 修改用户密码
+ * @param {string} userName
+ * @param {string} passWord
+ * @param {string} newPassWord
+ */
+async function updatePassWord({ userName, passWord, newPassWord }) {
+  const result = await updateUser({ userName, passWord, newPassWord });
+  if (result) {
+    return new SuccessModule();
+  }
+  return new ErrorModule(updatePasswordFail);
+}
+
 module.exports = {
   isExist,
   register,
@@ -140,4 +154,5 @@ module.exports = {
   deleteCurrentUser,
   getSession,
   updateUserInfo,
+  updatePassWord,
 }

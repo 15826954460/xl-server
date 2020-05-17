@@ -36,7 +36,7 @@ async function getUserInfo(userName, passWord) {
   }
 
   // 格式化处理
-  const formatResult =  formatUser(result.dataValues);
+  const formatResult = formatUser(result.dataValues);
 
   return formatResult;
 }
@@ -80,11 +80,11 @@ async function deleteUser(userName) {
  * @param {string} city
  * @param {string} passWord 
  */
-async function updateUser({ userName, nickName, picture, city, passWord }) {
+async function updateUser({ userName, nickName, picture, city, passWord, newPassWord }) {
   // 修改的数据
   const updateData = {};
-  if (passWord) {
-    updateData.passWord = passWord;
+  if (newPassWord) {
+    updateData.passWord = doCrypto(newPassWord);
   }
   if (nickName) {
     updateData.nickName = nickName
@@ -99,7 +99,7 @@ async function updateUser({ userName, nickName, picture, city, passWord }) {
   // 查寻条件
   const whereData = { userName };
   if (passWord) {
-    whereData.passWord = passWord;
+    whereData.passWord = doCrypto(passWord);
   }
 
   const result = await Users.update(updateData, {

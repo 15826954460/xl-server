@@ -53,5 +53,9 @@ module.exports = {
   updateUserInfoFail: {
     code: 10010,
     msg: '修改用户信息失败'
-  }
+  },
+  updatePasswordFail: {
+    code: 10011,
+    msg: '修改密码失败'
+  },
 }
