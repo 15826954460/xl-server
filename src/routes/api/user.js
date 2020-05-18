@@ -9,7 +9,7 @@ const router = new Router();
 
 const {
   isExist, register, login, deleteCurrentUser, getSession,
-  updateUserInfo, updatePassWord, 
+  updateUserInfo, updatePassWord, logout,
 } = require('../../controller/user');
 const { isPro } = require('../../config/env');
 const { userValidate } = require('../../validate/user');
@@ -60,6 +60,11 @@ router.put('/updatePassWord', loginCheck, genValidate(userValidate), async (ctx,
   const { passWord, newPassWord } = ctx.request.body;
   const { userName } = ctx.session.userInfo;
   ctx.body = await updatePassWord({ ctx, userName, passWord, newPassWord });
+})
+
+// 退出登陆
+router.post('/logout', loginCheck, async (ctx) => {
+  ctx.body = await logout(ctx);
 })
 
 module.exports = router

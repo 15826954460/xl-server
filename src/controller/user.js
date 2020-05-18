@@ -147,6 +147,11 @@ async function updatePassWord({ userName, passWord, newPassWord }) {
   return new ErrorModule(updatePasswordFail);
 }
 
+async function logout(ctx) {
+  delete ctx.session.userInfo;
+  return new SuccessModule();
+}
+
 module.exports = {
   isExist,
   register,
@@ -155,4 +160,5 @@ module.exports = {
   getSession,
   updateUserInfo,
   updatePassWord,
+  logout,
 }
