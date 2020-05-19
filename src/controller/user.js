@@ -82,8 +82,8 @@ async function login({ ctx, userName, passWord }) {
  * @description 删除当前用户
  * @param {string} userName 用户名 
  */
-async function deleteCurrentUser({ userName }) {
-  const result = await deleteUser(userName);
+async function deleteCurrentUser({ ctx, userName }) {
+  const result = await deleteUser({ userName });
   if (result) {
     // 成功
     return new SuccessModule();

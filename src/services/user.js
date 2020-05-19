@@ -20,7 +20,7 @@ async function getUserInfo(userName, passWord) {
   }
   // 判断登陆是否成功的查询条件
   if (passWord) {
-    Object.assign(queryOpt, { passWord: doCrypto(passWord) });
+    queryOpt.passWord = doCrypto(passWord);
   }
 
   // 查询用户信息
@@ -62,7 +62,7 @@ async function createUser({ userName, passWord, gender = 3, nickName }) {
  * @description 删除用户
  * @param {string} userName 用户名
  */
-async function deleteUser(userName) {
+async function deleteUser({ userName }) {
   const result = await Users.destroy({
     where: {
       userName
