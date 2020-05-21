@@ -5,7 +5,7 @@
  * @url 文档 https://www.cnblogs.com/zzsdream/p/11088678.html
  */
 const Seq = require('../seq');
-const { STRING, DECIMAl, INTEGER } = require('../seq/type')
+const { STRING, DECIMAl, INTEGER } = require('../seq/type');
 
 const Users = Seq.define('users', {
   id: {

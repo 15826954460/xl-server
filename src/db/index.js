@@ -5,7 +5,8 @@
 */
 
 const Users = require('./module/user');
+const Blogs = require('./module/blog');
 
 module.exports = {
-  Users
+  Users, Blogs,
 }
