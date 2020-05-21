@@ -6,7 +6,7 @@
 const Seq = require('../seq');
 const { STRING, TEXT, INTEGER } = require('../seq/type');
 
-const Blogs = Seq.define({
+const Blogs = Seq.define('blogs', {
   id: {
     type: INTEGER,              // 类型 整数
     primaryKey: true,           // 主键
@@ -28,6 +28,9 @@ const Blogs = Seq.define({
     type: STRING,
     comment: '用户图像',
   }
+}, {
+  timestamps: true,       // 创建时间
+  freezeTableName: true,  // 不使用seq规则改变表名
 });
 
 module.exports = Blogs;
