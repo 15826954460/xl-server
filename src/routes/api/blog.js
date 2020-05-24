@@ -9,11 +9,13 @@ const router = new Router();
 
 const { create } = require('../../controller/blog');
 const { loginCheck } = require('../../middlewares/loginChecks');
+const { genValidate } = require('../../middlewares/validate');
+const { blogValidate } = require('../../validate/blog'); 
 
 router.prefix('/api/blog');
 
 // 创建博客
-router.post('/create', loginCheck, async (ctx, next) => {
+router.post('/create', loginCheck, genValidate(blogValidate), async (ctx, next) => {
   const { comment } = ctx.request.body;
   const { id: userId } = ctx.session.userInfo;
   ctx.body = await create({ comment, userId });

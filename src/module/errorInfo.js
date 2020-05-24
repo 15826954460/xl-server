@@ -22,7 +22,7 @@ module.exports = {
   // 参数错误
   jsonSchemaValidateError: {
     code: 10004,
-    msg: '数据格式校验错误'
+    msg: '数据格式校验未通过,请检查params'
   },
   // 用户名或密码错误
   loginError: {
