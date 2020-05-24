@@ -24,10 +24,6 @@ const Blogs = Seq.define('blogs', {
     allowNull: false,
     comment: '微博内容',
   },
-  image: {
-    type: STRING,
-    comment: '用户图像',
-  }
 }, {
   timestamps: true,       // 创建时间
   freezeTableName: true,  // 不使用seq规则改变表名
