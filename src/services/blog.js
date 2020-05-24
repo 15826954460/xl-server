@@ -4,6 +4,7 @@
  * @description blog services
 */
 
+const xss = require('xss');
 const { Blogs } = require('../db/index');
 
 /**
@@ -12,7 +13,7 @@ const { Blogs } = require('../db/index');
 */
 async function createBlog({ comment, userId }) {
   const result = await Blogs.create({
-    comment,
+    comment: xss(comment),
     userId
   });
   return result.dataValues;
