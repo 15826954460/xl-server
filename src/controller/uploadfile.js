@@ -6,6 +6,7 @@
 
 const fs = require('fs-extra');
 const path = require('path');
+const mineType = require('mime-types');  // 文件类型
 
 function resolve (dir) {
   return path.join(__dirname, dir)
@@ -62,7 +63,10 @@ async function saveFile({ size, path, name, type }) {
   await fs.move(path, TAGGET_FILE_PATH); // 移动到目标路径
 
   // 返回文件路径, 这个只做演示，返回百度的logo
-  return new SuccessModule({ url: `//www.baidu.com/img/baidu_jgylogo3.gif` });
+  let data = fs.readFileSync(TAGGET_FILE_PATH);
+  data = Buffer.from(data, 'utf8').toString('base64');
+  let base64 = 'data:' + mineType.lookup(filePath) + ';base64,' + data;
+  return new SuccessModule({ url: base64 });
 }
 
 module.exports = {
