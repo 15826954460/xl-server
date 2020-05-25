@@ -12,7 +12,7 @@ test('Users 模型的各个属性', () => {
     userName: 'zhangsan',
     passWord: 'abc',
     nickName: '张三',
-    // gender: 1
+    gender: 1,
     picture: '/xxx.png',
     city: '武汉',
   });
@@ -20,7 +20,7 @@ test('Users 模型的各个属性', () => {
   expect(user.userName).toBe('zhangsan');
   expect(user.passWord).toBe('abc');
   expect(user.nickName).toBe('张三');
-  expect(user.gender).toBe(3); // 测试默认值
+  expect(user.gender).toBe(1); // 测试默认值
   expect(user.picture).toBe('/xxx.png');
   expect(user.city).toBe('武汉');
 })

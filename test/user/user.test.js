@@ -19,35 +19,31 @@ const testUserInfo = {
 
 let COOKIE = '';
 
-// json schema 检测
-test('json schema 检测，格式不符合要求，应该失败', async () => {
+// 注册
+test('注册新用户，should success', async () => {
   const res = await server.post('/api/user/register').send(testUserInfo);
   expect(res.body.code).toBe(0);
 });
 
-// 注册
-test('注册一个新用户，应该不成功,测试数据格式的时候已经注册', async () => {
-  const res = await server.post('/api/user/register').send(testUserInfo);
-  expect(res.body.code).not.toBe(0);
-});
-
 // 重复注册
-test('重复注册一个用户，应该失败', async () => {
+test('重复用户，should err', async () => {
   const res = await server.post('/api/user/register').send(testUserInfo);
   expect(res.body.code).not.toBe(0);
 });
 
 // 判断用户名是否存在
-test('查询注册用户名，应该存在', async () => {
+test('查询用户是否存在，should success', async () => {
+  const { userName } = testUserInfo;
   const res = await server.post('/api/user/isExist').send({ userName });
   expect(res.body.code).toBe(0);
 });
 
 // 检测登陆
-test('已注册用户登陆，应该成功', async () => {
+test('已注册用户登陆，should success', async () => {
+  const { userName, passWord } = testUserInfo;
   const res = await server.post('/api/user/login').send({ userName, passWord });
   expect(res.body.code).toBe(0);
-  // 获取 cookie
+  // 设置 cookie
   COOKIE = res.headers['set-cookie'].join(';')
 })
 
@@ -77,7 +73,7 @@ test('删除已登陆用户，应该成功', async () => {
 })
 
 // 再次查询用户，应该失败
-test('删除用户后，查询注册用户名，应该不存在', async () => {
+test('删除用户 => 再查询用户，应该失败', async () => {
   const res = await server.post('/api/user/isExist').send({ userName });
   expect(res.body.code).not.toBe(0);
 });

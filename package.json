@@ -7,7 +7,8 @@
     "dev": "cross-env NODE_ENV=dev node app.js",
     "pro": "cross-env NODE_ENV=production node app.js",
     "lint": "eslint --ext .js ./src",
-    "test": "cross-env NODE_ENV=test jest --colors node ./test/user/user.test.js",
+    "test:blog": "cross-env NODE_ENV=test jest --colors node ./test/blog",
+    "test:user": "cross-env NODE_ENV=test jest --colors node ./test/user",
     "test:watch": "cross-env NODE_ENV=test jest --colors --watch",
     "test:cove": "cross-env NODE_ENV=test jest --colors --coverage",
     "mysql": "node src/db/seq/async.js"
