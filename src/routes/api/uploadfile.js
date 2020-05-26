@@ -17,6 +17,7 @@ router.prefix('/api/file');
 router.post('/fileUpload', sessionCheck, async (ctx, next) => {
   // 单个文件，返回文件对象，多个文件 返回列表
   const file = ctx.request.files.file;
+  const { base64 } = ctx.request.body;
   if (!file) {
     ctx.body = {
       code: 0,
@@ -24,7 +25,7 @@ router.post('/fileUpload', sessionCheck, async (ctx, next) => {
     }
   }
   const { size, path, name, type } = file;
-  ctx.body = await saveFile({ size, path, name, type })
+  ctx.body = await saveFile({ size, path, name, type, base64 })
 })
 
 module.exports = router;

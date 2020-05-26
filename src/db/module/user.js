@@ -5,7 +5,7 @@
  * @url 文档 https://www.cnblogs.com/zzsdream/p/11088678.html
  */
 const Seq = require('../seq');
-const { STRING, DECIMAl, INTEGER } = require('../seq/type');
+const { STRING, DECIMAl, INTEGER, TEXT } = require('../seq/type');
 
 const Users = Seq.define('users', {
   id: {
@@ -37,7 +37,7 @@ const Users = Seq.define('users', {
     comment: '性别(1 男 2 女 3 保密)'
   },
   picture: {
-    type: STRING,
+    type: TEXT,
     allowNull: true,
     comment: '图像(图片地址)'
   },

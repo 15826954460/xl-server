@@ -30,17 +30,15 @@ const SCHEMA = {
     },
     picture: {
       type: 'string',
-      maxLength: 255
+      maxLength: 65536
     },
     city: {
       type: 'string',
       maxLength: 255,
-      minLength: 2
+      minLength: 0,
     },
     gender: {
       type: 'number',
-      minimum: 1,
-      maximum: 3
     }
   }
 }
@@ -53,6 +51,6 @@ function userValidate(data = {}) {
   return validate(SCHEMA, data);
 }
 
-module.exports = { 
+module.exports = {
   userValidate,
 }

@@ -67,4 +67,4 @@ router.post('/logout', loginCheck, async (ctx) => {
   ctx.body = await logout(ctx);
 })
 
-module.exports = router
+module.exports = router;

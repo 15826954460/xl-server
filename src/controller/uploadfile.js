@@ -16,7 +16,7 @@ const MAX_SIZE = 5 * 1024 * 1024; // 文件大小限制5M
 const TAGGET_FOLDER_PATH = resolve('../../uploadFiles'); // 目标文件夹
 
 const { SuccessModule, ErrorModule } = require('../module/responseModule');
-const { 
+const {
   fileSizeOverMaxSize
 } = require('../module/errorInfo');
 
@@ -39,7 +39,7 @@ async function pathExists () {
 
 pathExists();
 
-async function saveFile({ size, path, name, type }) {
+async function saveFile({ size, path, name, type, base64 }) {
   if (size > MAX_SIZE) {
     await fs.remove(path, err => {
       // 文件删除失败
@@ -62,10 +62,6 @@ async function saveFile({ size, path, name, type }) {
   const TAGGET_FILE_PATH = resolve(`../../uploadFiles/${fileName}`); // 目标文件
   await fs.move(path, TAGGET_FILE_PATH); // 移动到目标路径
 
-  // 返回文件路径, 这个只做演示，返回百度的logo
-  let data = fs.readFileSync(TAGGET_FILE_PATH);
-  data = Buffer.from(data, 'utf8').toString('base64');
-  let base64 = 'data:' + mineType.lookup(filePath) + ';base64,' + data;
   return new SuccessModule({ url: base64 });
 }
 
