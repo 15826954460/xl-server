@@ -1,16 +1,16 @@
 /**
  * @author 柏运送
  * @date 2020-04-12 09:50:42
- * @description 登陆验证中间件 
+ * @description 登陆验证中间件
  */
 
-const { ErrorModule } = require('../module/responseModule');
-const { loginCheckFail, getSessionFail } = require('../module/errorInfo');
+const { ErrorModule } = require('../response/responseData');
+const { loginCheckFail, getSessionFail } = require('../response/errorInfo');
 
 /**
  * @description API 登陆验证
- * @param {object} ctx  koa2 ctx 
- * @param {function} next koa2 next 
+ * @param {object} ctx  koa2 ctx
+ * @param {function} next koa2 next
  */
 const loginCheck = async (ctx, next) => {
   // 用户已经登陆
@@ -25,8 +25,8 @@ const loginCheck = async (ctx, next) => {
 
 /**
  * @description API session 验证
- * @param {*} ctx 
- * @param {*} next 
+ * @param {*} ctx
+ * @param {*} next
  */
 const sessionCheck = async (ctx, next) => {
   // 用户已经登陆

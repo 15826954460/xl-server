@@ -1,11 +1,11 @@
 /**
  * @author 柏运送
  * @date 2020-05-24 21:54:33
- * @description 
+ * @description
 */
 const { createBlog } = require('../services/blog');
-const { SuccessModule, ErrorModule } = require('../module/responseModule');
-const { createBlogFail } = require('../module/errorInfo');
+const { SuccessModule, ErrorModule } = require('../response/responseData');
+const { createBlogFail } = require('../response/errorInfo');
 
 async function create({ comment, userId }) {
   try {

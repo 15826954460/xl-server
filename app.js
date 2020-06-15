@@ -14,6 +14,7 @@ const logger = require('koa-logger');
 const debug = require('debug')('koa2:server');
 const jwt = require('koa-jwt');
 const koaBody = require('koa-body');
+const koaStatic = require('koa-static');
 // const views = require('koa-views')
 // const co = require('co')
 
@@ -66,10 +67,10 @@ const allowOrigins = [
 ];
 app.use(cors({
   origin: function(ctx) {
-    if (allowOrigins.includes(ctx.header.origin)) {
-      return ctx.header.origin;
-    }
-    return false;
+    return ctx.header.roigin;
+    // if (allowOrigins.includes(ctx.header.origin)) {
+    //   return ctx.header.origin;
+    // }
   },
   maxAge: 5,
   credentials: true,
@@ -83,7 +84,7 @@ app
   // .use(bodyparser())
   .use(json())
   .use(logger())
-  .use(require('koa-static')(resolve('/src/public')))
+  .use(koaStatic(resolve('/src/public')))
   .use(koaBody({ multipart: true }));
 
 /**
