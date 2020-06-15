@@ -4,8 +4,7 @@
  * @description 引入koa
 */
 
-
 const supertest = require('supertest');
-const server = require('../app').callback()
+const server = require('../app').callback();
 
 module.exports = supertest(server);
