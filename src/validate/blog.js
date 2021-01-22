@@ -22,6 +22,6 @@ function blogValidate(data = {}) {
   return validate(SCHEMA, data);
 }
 
-module.exports = { 
+module.exports = {
   blogValidate,
 }

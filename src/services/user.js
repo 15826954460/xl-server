@@ -105,7 +105,7 @@ async function updateUser({ userName, nickName, picture, city, passWord, newPass
   const result = await Users.update(updateData, {
     where: whereData
   });
-  console.log(`跟新用户信息返回的数据： ${JSON.stringify(result)}`);
+  // console.log(`跟新用户信息返回的数据： ${JSON.stringify(result[0])}`);
   return result[0] > 0;
 }
 

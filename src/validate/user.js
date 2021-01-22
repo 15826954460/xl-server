@@ -32,11 +32,10 @@ const SCHEMA = {
       type: 'string',
       maxLength: 65536
     },
-    city: {
-      type: 'string',
-      maxLength: 255,
-      minLength: 0,
-    },
+    // city: {
+    //   type: ['string', null],
+    //   maxLength: 255,
+    // },
     gender: {
       type: 'number',
     }

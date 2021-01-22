@@ -71,7 +71,6 @@ async function login({ ctx, userName, passWord }) {
 
   // 登陆成功,设置session
   ctx.session.userInfo = { ...userInfo };
-  // console.log(`登陆成功获取session`, ctx.session);
   
   return new SuccessModule({
     data: userInfo
