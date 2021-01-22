@@ -4,8 +4,8 @@
  * @description 数据格式校验中间件
 */
 
-const { ErrorModule } = require('../module/responseModule');
-const { jsonSchemaValidateError } = require('../module/errorInfo');
+const { ErrorModule } = require('../response/responseData');
+const { jsonSchemaValidateError } = require('../response/errorInfo');
 
 /**
  * @param {Function} validateFn 数据格式校验函数

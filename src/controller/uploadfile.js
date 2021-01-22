@@ -15,10 +15,10 @@ function resolve (dir) {
 const MAX_SIZE = 5 * 1024 * 1024; // 文件大小限制5M
 const TAGGET_FOLDER_PATH = resolve('../../uploadFiles'); // 目标文件夹
 
-const { SuccessModule, ErrorModule } = require('../module/responseModule');
+const { SuccessModule, ErrorModule } = require('../response/responseData');
 const {
   fileSizeOverMaxSize
-} = require('../module/errorInfo');
+} = require('../response/errorInfo');
 
 /**
  * @description 创建文件夹

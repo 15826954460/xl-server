@@ -14,6 +14,7 @@ const logger = require('koa-logger');
 const debug = require('debug')('koa2:server');
 const jwt = require('koa-jwt');
 const koaBody = require('koa-body');
+const koaStatic = require('koa-static');
 // const views = require('koa-views')
 // const co = require('co')
 
@@ -55,7 +56,7 @@ onerror(app, onerrorConfig);
  * @param {origin} string 设置允许来自指定域名请求
  * @param {maxAge} number 指定本次预检请求的有效期，单位为秒
  * @param {credentials} boolean 是否允许发送Cookie
- * @param {allowMethods} array 设置所允许的HTTP请求方法 
+ * @param {allowMethods} array 设置所允许的HTTP请求方法
  * @param {allowHeaders} array 设置服务器支持的所有头信息字段
  * @param {exposeHeaders} array 设置获取其他自定义字段
  */
@@ -66,43 +67,43 @@ const allowOrigins = [
 ];
 app.use(cors({
   origin: function(ctx) {
-    if (allowOrigins.includes(ctx.header.origin)) {
-      return ctx.header.origin;
-    }
-    return false;
+    return ctx.header.roigin;
+    // if (allowOrigins.includes(ctx.header.origin)) {
+    //   return ctx.header.origin;
+    // }
   },
   maxAge: 5,
   credentials: true,
   allowMethods: ['GET', 'POST', 'PUT', 'DEL'],
   allowHeaders: ['Content-Type', 'Authorization', 'Accept',],
-  exposeHeaders: ['token']
+  exposeHeaders: ['token'],
 }));
 
-// middlewares
+// middlewares app.use 返回 this => new Koa()
 app
   // .use(bodyparser())
   .use(json())
   .use(logger())
-  .use(require('koa-static')(resolve('/src/public')))
+  .use(koaStatic(resolve('/src/public')))
   .use(koaBody({ multipart: true }));
-  
+
 /**
  * @description 注册jwt
- * @params {unless} 排除不用验证接口
+ * @param {unless} 排除不用验证接口
  */
 // app.use(jwt({ JWT_SECRET_KEY }).unless({ path: [/^\/login/, /^\/web-test/] }));
 
 /**
  * @description session配置
- * @params {key} string cookie name 默认 koa.sid
- * @params {prefix} string session prefix 默认 koa:sess
- * @params {cookie} object
- * @params {ttl} number 单位ms session 过期时间, 默认和 cookie 中的保持一致，如果不写cookie 只写ttl，session的过期时间将以ttl为准
- * @params {store} object session 数据存储到redis中
- * 注: session 是否配置使用成功 命令行输入 redis-cli.exe enter keys * 
+ * @param {key} string cookie name 默认 koa.sid
+ * @param {prefix} string session prefix 默认 koa:sess
+ * @param {cookie} object
+ * @param {ttl} number 单位ms session 过期时间, 默认和 cookie 中的保持一致，如果不写cookie 只写ttl，session的过期时间将以ttl为准
+ * @param {store} object session 数据存储到redis中
+ * 注: session 是否配置使用成功 命令行输入 redis-cli.exe enter keys *
 */
 const EXPIRSES_TIME = 24 * 60 * 60 * 1000;
-app.keys = [SESSION_SECRET_KEY];
+app.keys = [SESSION_SECRET_KEY]; // 签名的cookie的密钥数组
 app.use(session({
   key: 'weibo.sid',
   prefix: 'weibo:sess',
@@ -117,7 +118,7 @@ app.use(session({
   store: redisStore({
     all: `${redisConfig.host}:${redisConfig.port}`
   })
-}))
+}));
 
 // logger 自定义中间件演示
 app.use(async (ctx, next) => {
@@ -140,7 +141,7 @@ app.use(testRoutes.routes()).use(testRoutes.allowedMethods());
 app.on('error', function(err, ctx) {
   console.log(err);
   logger.error('server error', err, ctx);
-})
+});
 
 app.listen(port, () => {
   console.log(`Listening on localhost:${localConfig.port}`);

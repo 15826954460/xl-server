@@ -70,7 +70,7 @@ src
 - jsonwebtoken              json加密的第三方库
 - ajv                       数据格式检验库  
 - fs-extra                  nodejs 的 fs 模块扩展
-
+- log4js                    nodejs日志打印 https://github.com/log4js-node/log4js-example/blob/master/config/log4js.json
 
 #### 命令说明
 - "test": "cross-env NODE_ENV=test jest --runInBand --forceExit --colors",
@@ -90,8 +90,7 @@ jest 测试用列 文件必须以 .test.js 结尾  格式为 xxx.test.js
 headers 中添加 key: Authorization  value: 加密的tokan
 
 #### 关于项目开发中遇到的一些问题
-1、
-2、服务端设置session成功，但是另一个接口获取不到设置到session中的数据
+1、服务端设置session成功，但是另一个接口获取不到设置到session中的数据
 ```js
 // 服务端修改： cors 中间件设置
 app.use(cors({

@@ -4,18 +4,18 @@
  * @description user controller
 */
 
-const { 
+const {
   getUserInfo, createUser, deleteUser, updateUser,
 } = require('../services/user');
-const { SuccessModule, ErrorModule } = require('../module/responseModule');
-const { 
+const { SuccessModule, ErrorModule } = require('../response/responseData');
+const {
   userNameNotExist, userNameExist, registerFail, loginError, deleteUserFail,
   getSessionFail, updateUserInfoFail, updatePasswordFail,
-} = require('../module/errorInfo');
+} = require('../response/errorInfo');
 
 /**
  * @description: 用户名是否存在
- * @param {string} userName 
+ * @param {string} userName
  */
 async function isExist({ userName }) {
   // 获取用户信息
@@ -31,9 +31,9 @@ async function isExist({ userName }) {
 
 /**
  * @description: 注册接口
- * @param {*} userName 
- * @param {*} passWord 
- * @param {*} gender 
+ * @param {*} userName
+ * @param {*} passWord
+ * @param {*} gender
  */
 async function register({ userName, passWord, gender }) {
   // 获取用户信息
@@ -68,10 +68,8 @@ async function login({ ctx, userName, passWord }) {
     // 登陆失败
     return new ErrorModule(loginError);
   }
-
   // 登陆成功,设置session
   ctx.session.userInfo = { ...userInfo };
-  
   return new SuccessModule({
     data: userInfo
   });
@@ -79,7 +77,7 @@ async function login({ ctx, userName, passWord }) {
 
 /**
  * @description 删除当前用户
- * @param {string} userName 用户名 
+ * @param {string} userName 用户名
  */
 async function deleteCurrentUser({ ctx, userName }) {
   const result = await deleteUser({ userName });
@@ -102,7 +100,7 @@ async function getSession({ ctx }) {
     return new SuccessModule(userInfo)
   } else {
     return new ErrorModule(getSessionFail);
-  } 
+  }
 }
 
 /**
